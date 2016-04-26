@@ -5,12 +5,12 @@ package com.epicodus.weatherapplication.models;
  */
 public class Weather {
     private String mName;
-    private String mDateTime;
-    private String mDayTemp;
-    private String mDayTempLow;
-    private String mDayTempHigh;
+    private long mDateTime;
+    private int mDayTemp;
+    private int mDayTempLow;
+    private int mDayTempHigh;
 
-    public Weather(String name, String dateTime, String dayTemp, String dayTempLow, String dayTempHigh) {
+    public Weather(String name, long dateTime, int dayTemp, int dayTempLow, int dayTempHigh) {
         this.mName = name;
         this.mDateTime = dateTime;
         this.mDayTemp = dayTemp;
@@ -22,19 +22,19 @@ public class Weather {
         return mName;
     }
 
-    public String getDateTime() {
+    public long getDateTime() {
         return mDateTime;
     }
 
-    public String getDayTemp() {
+    public int getDayTemp() {
         return mDayTemp;
     }
 
-    public String getDayTempLow() {
+    public int getDayTempLow() {
         return mDayTempLow;
     }
 
-    public String getDayTempHigh() {
+    public int getDayTempHigh() {
         return mDayTempHigh;
     }
 }

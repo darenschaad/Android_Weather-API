@@ -53,10 +53,18 @@ public class WeatherService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject openweatherJSON = new JSONObject(jsonData);
-                JSONArray weathersJSON = openweatherJSON.getJSONArray("weathers");
-                for (int i = 0; i < weathersJSON.length(); i++) {
-                    JSONObject weatherJSON = weathersJSON.getJSONObject(i);
-                    String name = weatherJSON.getString("name");
+                JSONArray listsJSON = openweatherJSON.getJSONArray("list");
+                String name = openweatherJSON.getJSONObject("city").getString("name");
+
+                for (int i = 0; i < listsJSON.length(); i++) {
+                    JSONObject weatherJSON = listsJSON.getJSONObject(i);
+                    Long dateTime= weatherJSON.getLong("dt") * 1000;
+                    int dayTemp = weatherJSON.getJSONObject("temp").getInt("day");
+                    int dayTempLow = weatherJSON.getJSONObject("temp").getInt("min");
+                    int dayTempHigh = weatherJSON.getJSONObject("temp").getInt("max");
+
+                    Weather weather = new Weather(name, dateTime, dayTemp, dayTempLow, dayTempHigh);
+                    weathers.add(weather);
                 }
             }
         } catch (IOException e) {
@@ -65,5 +73,6 @@ public class WeatherService {
             e.printStackTrace();
         }
         return weathers;
+
     }
 }
