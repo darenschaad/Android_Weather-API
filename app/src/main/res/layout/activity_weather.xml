@@ -13,7 +13,8 @@
         android:layout_height="70dp"
         android:id="@+id/cityNameTextView"
         android:layout_gravity="center_horizontal"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

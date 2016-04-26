@@ -63,7 +63,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             String date = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date(weather.getDateTime()));
             mDateTextView.setText(date);
             mHighTempTextView.setText("High Temp: " + weather.getDayTempHigh() + " F");
-            mLowTempTextView.setText("High Temp: " +weather.getDayTempLow() + " F");
+            mLowTempTextView.setText("Low Temp: " +weather.getDayTempLow() + " F");
         }
     }
 }
