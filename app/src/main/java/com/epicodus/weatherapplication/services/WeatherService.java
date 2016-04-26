@@ -64,6 +64,7 @@ public class WeatherService {
                     int dayTempHigh = weatherJSON.getJSONObject("temp").getInt("max");
 
                     Weather weather = new Weather(name, dateTime, dayTemp, dayTempLow, dayTempHigh);
+                    Log.d("WEATHER", weather.getName() + weather.getDayTemp());
                     weathers.add(weather);
                 }
             }

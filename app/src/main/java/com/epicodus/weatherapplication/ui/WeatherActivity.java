@@ -3,11 +3,14 @@ package com.epicodus.weatherapplication.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.epicodus.weatherapplication.R;
+import com.epicodus.weatherapplication.adapters.WeatherListAdapter;
 import com.epicodus.weatherapplication.models.Weather;
 import com.epicodus.weatherapplication.services.WeatherService;
 
@@ -25,7 +28,9 @@ import okhttp3.Response;
 public class WeatherActivity extends AppCompatActivity {
     public ArrayList<Weather> mWeathers = new ArrayList<>();
     public static final String TAG = WeatherActivity.class.getSimpleName();
-    @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private WeatherListAdapter mAdapter;
+
 
 
 
@@ -57,17 +62,13 @@ public class WeatherActivity extends AppCompatActivity {
                 WeatherActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String[] locationList = new String[mWeathers.size()];
-                        for (int i = 0; i < locationList.length; i++) {
-                            locationList[i] = Integer.toString(mWeathers.get(i).getDayTemp());
-                    }
-                        ArrayAdapter adapter = new ArrayAdapter(WeatherActivity.this, android.R.layout.simple_list_item_1, locationList);
-                        mListView.setAdapter(adapter);
+                        mAdapter = new WeatherListAdapter(getApplicationContext(), mWeathers);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(WeatherActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
 
-                        for (Weather weather : mWeathers) {
-                            Log.d(TAG, "name" + weather.getName());
-                            Log.d(TAG, "dateTime" + weather.getDateTime());
-                        }
                     }
                 });
             }
