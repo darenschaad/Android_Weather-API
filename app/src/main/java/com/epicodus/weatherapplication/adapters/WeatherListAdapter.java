@@ -60,10 +60,10 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         }
 
         public void bindWeather(Weather weather) {
-            String date = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date(weather.getDateTime()));
+            String date = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date(weather.getDateTime()));
             mDateTextView.setText(date);
-            mHighTempTextView.setText(weather.getDayTempHigh() + "");
-            mLowTempTextView.setText(weather.getDayTempLow() + "");
+            mHighTempTextView.setText("High Temp: " + weather.getDayTempHigh() + " F");
+            mLowTempTextView.setText("High Temp: " +weather.getDayTempLow() + " F");
         }
     }
 }
